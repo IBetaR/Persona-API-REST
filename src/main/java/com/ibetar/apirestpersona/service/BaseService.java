@@ -1,10 +1,8 @@
 package com.ibetar.apirestpersona.service;
 
-import org.springframework.stereotype.Service;
-
 import java.util.List;
 
-@Service
+
 public interface BaseService <E> {
 
     public List<E> findAll() throws Exception;

@@ -4,6 +4,8 @@ import com.ibetar.apirestpersona.persistence.entity.Persona;
 import com.ibetar.apirestpersona.persistence.repository.BaseRepository;
 import com.ibetar.apirestpersona.persistence.repository.PersonaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -29,6 +31,20 @@ public class PersonaServiceImpl extends BaseServiceImpl<Persona, Long> implement
             throw new Exception(e.getMessage());
         }
     }
+
+    @Override
+    public Page<Persona> search(String filter, Pageable pageable) throws Exception {
+        try {
+            //Page<Persona> personas = personaRepository.findByNameContainingOrLastnameContaining(filter,filter, pageable);
+            //Page<Persona> personas = personaRepository.search(filter, pageable);
+            Page<Persona> personas = personaRepository.searchNative(filter, pageable);
+            return personas;
+        } catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
+    }
+}
+
 
 
 //    @Override
@@ -93,4 +109,4 @@ public class PersonaServiceImpl extends BaseServiceImpl<Persona, Long> implement
 //        }
 //
 //    }
-}
+//}

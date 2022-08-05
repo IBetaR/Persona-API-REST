@@ -2,6 +2,7 @@ package com.ibetar.apirestpersona.controller;
 
 import com.ibetar.apirestpersona.persistence.entity.Persona;
 import com.ibetar.apirestpersona.service.PersonaServiceImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +16,15 @@ public class PersonaController extends BaseControllerImpl <Persona, PersonaServi
     public ResponseEntity<?> search(@RequestParam String filter){
         try {
             return ResponseEntity.status(HttpStatus.OK).body(service.search(filter));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"Error\":\""+e.getMessage()+ ", Búsqueda no encontrada.\"}");
+        }
+    }
+
+    @GetMapping("searchPaged")
+    public ResponseEntity<?> search(@RequestParam String filter, Pageable pageable){
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(service.search(filter, pageable));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"Error\":\""+e.getMessage()+ ", Búsqueda no encontrada.\"}");
         }

@@ -1,13 +1,16 @@
 package com.ibetar.apirestpersona.persistence.entity;
 
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "author")
 public class Autor extends Base{
 

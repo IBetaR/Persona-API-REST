@@ -2,9 +2,9 @@ package com.ibetar.apirestpersona.persistence.entity;
 
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Data
@@ -22,4 +22,7 @@ public class Libro extends Base{
 
     @Column(name = "pages")
     private int pages;
+
+    @ManyToMany(cascade = CascadeType.REFRESH)
+    private List<Autor> autores = new ArrayList<>();
 }

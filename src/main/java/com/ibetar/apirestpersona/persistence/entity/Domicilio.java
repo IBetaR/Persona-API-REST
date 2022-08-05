@@ -2,9 +2,7 @@ package com.ibetar.apirestpersona.persistence.entity;
 
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Data
@@ -16,5 +14,10 @@ public class Domicilio extends Base {
 
     @Column(name = "numero")
     private int numero;
+
+
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "fk_localidad")
+    private Localidad localidad;
 
 }

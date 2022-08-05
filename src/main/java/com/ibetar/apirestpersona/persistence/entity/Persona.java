@@ -12,10 +12,7 @@ import java.time.LocalDate;
 @Table(name = "persona")
 @Data
 //@Audited
-public class Persona implements Serializable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class Persona extends Base {
 
     @Column(name = "name")
     private String name;
@@ -25,5 +22,7 @@ public class Persona implements Serializable {
 
     @Column(name = "dni")
     private int dni;
+
+
 
 }
